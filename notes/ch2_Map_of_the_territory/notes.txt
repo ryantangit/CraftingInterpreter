@@ -1,0 +1,68 @@
+Steps of a language:
+1. Scanning
+	- take in linear stream of words and convert into programming(words)
+2. Parsing
+	- take flat sequence of tokens and build a syntax tree that mirrors the nature of the grammar.
+	- syntax trees == ASTs == trees
+3. Static Analysis
+	- first analysis is binding or resolution
+		- find where name is defined and understand the scope of specific names
+	- statically typed languages will have type check at this point
+	- some places we can store such informations:
+	1. attributes of the syntax tree
+	2. look up table for data off to the side, or symbol table
+
+------------
+
+Up to this point this is considered to be the front end of the language
+
+------------
+
+In the intermediate representation, it acts as an interface between the front and backend (architecture specific details)
+
+So instead of writing a compiler for each specific architecture, write 1 frontend for each language, and 1 backend for each architecture.
+This way, the frontend -> IR (intermediate representation) -> backend flow allows frontends and backends to be swappable.
+
+
+4. Optimization
+	- rabit hole but the simplest is converting constants like a=1 + 1 + 1 -> a=3 at compile time
+	- not touched on in the book but could be a lifetime work
+
+5. Code Generation
+	- generating code goes from primitive-assembly like instructions a CPU runs
+	- the backend is located here
+	- consideration to either: target CPU or a VM
+	- Real machine code takes a lot of effort but is very fast
+	- Bytecode is portable but requires a VM to execute and thus slower than native code
+	- VM (virtual machine) is a program that emulates a chip support the virtual architecture at runtime.
+
+6. Runtime
+	- If language compiled to machine code, then the OS will load the executable and off it goes.
+	- if language compiled to byte code, then we start up the VM and load the program into the VM.
+	- For most langauges, some services like garbage collector or object attribute tracking during execution is required.
+		All of this will go at runtime, hence they are also called the runtime.
+		- Go embeds Go's runtime into every compiled binary
+		- Languages that run in VM or interpreters, the runtime resides there.
+
+
+Single Pass compilers
+- soon as expression is seen, there is enough information to correctly compile it
+- restricts language design, notably Pascal(dunno anything about) and C
+- based in memory limitations
+
+Tree Walk Interpreters
+- after parsing code into an AST, the interpreter traverse the syntax tree one branch/one leaf at a time.
+
+Transpilers 
+- source-to-source compiler / or transpiler
+- treat another language as the intermediate representation
+- ie. typescript compiling down to javascript, targeting language into C to run on everything
+
+Just-In-Time Compilation
+- On the end users' machines, when the program is loaded, compile it to native code for the architecture
+
+Compiler vs Interpreter
+- Compiling = translate source from one to another form, no execution
+- Interpreting = takes the source code and executes it immediately, run program from source
+
+
