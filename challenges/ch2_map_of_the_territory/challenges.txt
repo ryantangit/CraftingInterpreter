@@ -1,0 +1,13 @@
+1. I cloned CPython and dug around. The lexer and parser are handwritten in C.
+
+2. Not really sure, but if I had to guess it would be due to the complexity. 
+	You still have to find a way to implement the language such that it targets architecture.
+
+	Edit: My answer was p poo poo, there are more answers. 
+	Online search shows 
+	- there is more overhead for JIT
+	- security implications of generating / executing code @ runtime 
+	- warm up in cases of "Hotspot" JIT
+
+3. Having an interpreter without the need for code compilation is pretty convenient. It's easy to quickly
+	mock up ideas. Without the need to compile a program each time to test.
