@@ -1,0 +1,11 @@
+1. Compiled and ran the C-based interpreter (I dont have java installed), first couple thing I tried was something like javascript engines
+	"hi"; -> did not return an expression into console log, not sure if it's nil or not
+	did a print "hello world"
+
+2. - what happens when you print(nil)? -> probably just print nil? -> it prints nil
+   - can you double declare variables like var a; var a; in a different line? -> yes you can
+   It's pretty neat, i wonder if there is like operator overriding
+
+3. not having a list object is pretty annoying. Or some form of array object.
+	being able to instatiant an empty object for modification would be useful, but that can be done p easily w an empty class 
+	not sure how, but it would also be useful to iterate through an object's attributes
