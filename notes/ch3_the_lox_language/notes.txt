@@ -1,0 +1,107 @@
+Lox is gonna be the language we work on.
+
+Gonna be "small but useful", will look similar to javascript
+
+Dynamic Typing
+- variable stores values of any type
+- operation errors are caught at runtime
+- static type is  a lot of work, skipping it gives a simpler language
+
+
+Automatic Memory Management
+- two main techniques to manage memory
+	1. reference counting  
+	2. tracing garbage collection
+- reference counting is simpler but overtime it's easier to add full tracing garbage collection
+- garbage collection has a fearsome rep, but it's worth it
+
+
+Data Types
+- booleans -> true/false
+- numbers -> double-precision floating point
+- strings -> strings are strings of characters
+
+Nil 
+- no value or null
+- often pretty annoying bug to deal with, but for static type worthwhile addressing, dynamic typed its easier
+
+Expressions
+
+Arithmetic
+- basic operators +, -, /, *
+- subexpressions on either side are *operands*
+- infix operators: in the middle, prefix operators: comes before, profix operators: comes after
+
+Comparison and equality
+- basic operators <, <=, >, >=
+- equality ==, !=
+
+Logical operators
+- ! to invert: !true -> false
+- and / or, also can be control flow, logic depending on left operand
+
+Precendence and grouping
+- grouping follow typical C, if precendence is not what is expected, use ( ) to group things.
+
+Statements
+- a statement's job is to produce an effect, statements don't evaluate to a value.
+- statements are either modifying some state, reading input, or producing output.
+- expression is followed by a semicolon (;)
+- series of expressions is grouped by a block { [code] }
+- blocking affects scoping
+
+Variables
+- variables are declared using var statements, no init then it defaults to nil
+- access and assign normally like C or Java
+
+Control Flow
+- if statement:
+	if (condition) {} else {}
+- while satement:
+	while (condition) {}
+- for loops:
+	for (var a = 1; a < 10; a = a + 1) {}
+
+Functions
+- makeBreakfast(bacon, eggs, toasts), invoke via ()
+- parentheses are mandatory, name doesn't call function, only references it
+- function is defined as so:
+	fn printSum(a, b) {print a + b};
+- argument vs parameter -> argument is actual value you pass to a function when call
+- parameter is a variable that holds the value of the argument inside the body
+- if execution reach end of block without hitting a return, implicityl returns nil
+
+Closures
+- functions are first class, so they can be referenced, store variables, pass around etc
+- function declarations are statements, local functions can be delared inside another funciton
+- ex)
+					fun returnFunction() {
+					  var outside = "outside";
+
+					//This is considered a closure, bc inner has to hold on to a reference outside
+					  fun inner() {
+						print outside;
+					  }
+
+					  return inner;
+					}
+
+					var fn = returnFunction();
+					fn();
+
+
+Classes
+- classes are allowed, methods beign scoped to objects is pretty nice
+- easy to define compound data types
+- Lox is OOP because of familiarity
+- protype or classes:
+1. class / instance. Instances store the state of each object and class contain the moethod inheritance chain
+2. prototype based -> only objects, objects can inherit from each other
+- in Lox, treat the class itself as a factory function
+
+- Adding property should be freely done
+- access to the current object wihtihn a method should be using this
+- init() needs to be called 
+- inheritance for classes is defined using a less-than (<) operator
+ie. class Brunch < Breakfast -> brunch is the derived class from the base class Breakfast
+- use super for super's init method
