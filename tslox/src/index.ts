@@ -1,3 +1,5 @@
-import fs from "fs";
+import { LoxRunner } from "./runner.js";
 
-console.log("hello world");
+const args = process.argv.slice(2);
+const loxRunner = new LoxRunner();
+loxRunner.execute(args);
