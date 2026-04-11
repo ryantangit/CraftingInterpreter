@@ -1,10 +1,24 @@
 import fs from 'node:fs'
 import * as readline from 'node:readline'
+import { Scanner } from './scanner.js';
+import { LoxContext } from './context.js';
+import { SysExitCode } from './sysexit.js';
+
 
 export class LoxRunner {
+
+	ctx: LoxContext;
+	constructor(ctx: LoxContext) {
+		this.ctx = ctx;
+	}
+
 	private runFile(filepath: string) {
 		const data = fs.readFileSync(filepath, {encoding: "utf8"});
 		this.run(data);
+
+		if (this.ctx.hadError) {
+			process.exit(SysExitCode.EX_DATAERR)
+		}
 	}
 
 	private runPrompt() {
@@ -16,13 +30,18 @@ export class LoxRunner {
 			rl.prompt();
 		}).on('close', () => {
 			console.log("\nTerminating tslox, see ya!");
-			process.exit(0);
+			process.exit(SysExitCode.EX_OK);
 		});
-
-
+		this.ctx.hadError = false;
 	}
 
 	private run(input: string) {
+		const scanner = new Scanner(input);
+		const tokens = scanner.scanTokens();
+
+		for (const token of tokens) {
+			console.log(token);
+		}
 	}
 
 	execute(args: string[]) {
