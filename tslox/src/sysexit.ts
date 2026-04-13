@@ -1,9 +1,8 @@
 //Sourced from https://man.freebsd.org/cgi/man.cgi?query=sysexits&manpath=FreeBSD+4.3-RELEASE
 //Generated comments with Gemini
 
-export enum SysExitCode  {
-
-  // It's all gucci gang 
+export enum SysExitCode {
+  // It's all gucci gang
   EX_OK = 0,
 
   /** The command was used incorrectly (bad flags, syntax, etc.). */
@@ -49,5 +48,5 @@ export enum SysExitCode  {
   EX_NOPERM = 77,
 
   /** Something was found in an unconfigured or misconfigured state. */
-  EX_CONFIG = 78,}
-
+  EX_CONFIG = 78,
+}
