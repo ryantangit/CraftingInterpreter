@@ -17,7 +17,7 @@ export class Scanner {
 
   scanTokens(): Token[] {
     while (!this.isAtEnd()) {
-    	this.start = this.current;
+      this.start = this.current;
       this.scanToken();
     }
     this.tokens.push(new Token(TokenType.EOF, "", null, this.line));
@@ -56,7 +56,7 @@ export class Scanner {
         break;
       case "*":
         this.addToken(TokenType.STAR);
-				break;
+        break;
       case "!":
         this.match("=")
           ? this.addToken(TokenType.BANG_EQUAL)

@@ -5,7 +5,7 @@
   "scripts": {
     "compile": "tsc",
     "tslox": "npm run compile && node dist/index.js",
-		"test": "NODE_OPTIONS=--experimental-vm-modules jest --verbose",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "prettier": "prettier -w ."
   },
   "type": "module",
