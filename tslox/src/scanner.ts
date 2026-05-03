@@ -16,8 +16,8 @@ export class Scanner {
   }
 
   scanTokens(): Token[] {
-    this.start = this.current;
     while (!this.isAtEnd()) {
+    	this.start = this.current;
       this.scanToken();
     }
     this.tokens.push(new Token(TokenType.EOF, "", null, this.line));
@@ -56,6 +56,7 @@ export class Scanner {
         break;
       case "*":
         this.addToken(TokenType.STAR);
+				break;
       case "!":
         this.match("=")
           ? this.addToken(TokenType.BANG_EQUAL)
@@ -172,7 +173,7 @@ export class Scanner {
   }
 
   private isAlphaDigit(char: string | undefined) {
-    return this.isAlpha(char) && this.isDigit(char);
+    return this.isAlpha(char) || this.isDigit(char);
   }
 
   private tokenizeString() {
@@ -210,7 +211,7 @@ export class Scanner {
   }
 
   private tokenizeIdentifer() {
-    while (!this.isAtEnd() && this.isAlphaDigit(this.peek())) {
+    while (this.isAlphaDigit(this.peek())) {
       this.advance();
     }
 
